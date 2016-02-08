@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+
+<meta name="Description" content="Android Monitor helps you to profile the performance of your apps so you can optimize, debug, and improve them. It lets you monitor the following aspects of your apps from a hardware device or the Android Studio emulator: Android Monitor contains the …">
+<link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico" />
+<title>Android Monitor | Android Developers</title>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet"
+href="http://fonts.googleapis.com/css?family=Roboto+Condensed">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:light,regular,medium,thin,italic,mediumitalic,bold"
+  title="roboto">
+
+<link href="../../assets/css/default.css?v=7" rel="stylesheet" type="text/css">
+
+
+
+<!-- JAVASCRIPT -->
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script src="../../assets/js/android_3p-bundle.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var toRoot = "../../";
+  var metaTags = ["monitor"];
+  var devsite = false;
+</script>
+<script src="../../assets/js/docs.js?v=6" type="text/javascript"></script>
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-5831155-1', 'android.com');
+  ga('create', 'UA-49880327-2', 'android.com', {'name': 'universal'});  // New tracker);
+  ga('send', 'pageview');
+  ga('universal.send', 'pageview'); // Send page view for new tracker.
+</script>
+
+</head>
+
+<body class="gc-documentation
+
+
+develop" itemscope itemtype="http://schema.org/Article">
+<a name="top"></a>
+
+<!-- dialog to prompt lang pref change when loaded from hardcoded URL
+<div id="langMessage" style="display:none">
+  <div>
+    <div class="lang en">
+      <p>You requested a page in English, would you like to proceed with this language setting?</p>
+    </div>
+    <div class="lang es">
+      <p>You requested a page in Spanish (Español), would you like to proceed with this language setting?</p>
+    </div>
+    <div class="lang ja">
+      <p>You requested a page in Japanese (日本語), would you like to proceed with this language setting?</p>
+    </div>
+    <div class="lang ko">
+      <p>You requested a page in Korean (한국어), would you like to proceed with this language setting?</p>
+    </div>
+    <div class="lang ru">
+      <p>You requested a page in Russian (Русский), would you like to proceed with this language setting?</p>
+    </div>
+    <div class="lang zh-cn">
+      <p>You requested a page in Simplified Chinese (简体中文), would you like to proceed with this language setting?</p>
+    </div>
+    <div class="lang zh-tw">
+      <p>You requested a page in Traditional Chinese (繁體中文), would you like to proceed with this language setting?</p>
+    </div>
+    <a href="#" class="button yes" onclick="return false;">
+      <span class="lang en">Yes</span>
+      <span class="lang es">Sí</span>
+      <span class="lang ja">Yes</span>
+      <span class="lang ko">Yes</span>
+      <span class="lang ru">Yes</span>
+      <span class="lang zh-cn">是的</span>
+      <span class="lang zh-tw">没有</span>
+    </a>
+    <a href="#" class="button" onclick="$('#langMessage').hide();return false;">
+      <span class="lang en">No</span>
+      <span class="lang es">No</span>
+      <span class="lang ja">No</span>
+      <span class="lang ko">No</span>
+      <span class="lang ru">No</span>
+      <span class="lang zh-cn">没有</span>
+      <span class="lang zh-tw">没有</span>
+    </a>
+  </div>
+</div> -->
+
+
+  <!-- Header -->
+  <div id="header-wrapper">
+    <div class="dac-header" id="header">
+
+
+
+
+      <div class="dac-header-inner">
+        <a class="dac-nav-toggle" data-dac-toggle-nav href="javascript:;" title="Open navigation">
+          <span class="dac-nav-hamburger">
+            <span class="dac-nav-hamburger-top"></span>
+            <span class="dac-nav-hamburger-mid"></span>
+            <span class="dac-nav-hamburger-bot"></span>
+          </span>
+        </a>
+        <a class="dac-header-logo" href="../../index.html">
+          <img class="dac-header-logo-image" src="../../assets/images/android_logo.png"
+              srcset="../../assets/images/android_logo@2x.png 2x"
+              width="32" height="36" alt="Android" /> Developers
+          </a>
+
+        <ul class="dac-header-crumbs">
+          
+          <li class="dac-header-crumbs-item"><span class="dac-header-crumbs-link current ">Android Monitor</a></li>
+        </ul>
+
+        
+        
+        
+  <div class="dac-header-search" id="search-container">
+    <div class="dac-header-search-inner">
+      <div class="dac-sprite dac-search dac-header-search-btn" id="search-btn"></div>
+      <form class="dac-header-search-form" onsubmit="return submit_search()">
+        <input id="search_autocomplete" type="text" value="" autocomplete="off" name="q"
+          onfocus="search_focus_changed(this, true)" onblur="search_focus_changed(this, false)"
+          onkeydown="return search_changed(event, true, '../../')"
+          onkeyup="return search_changed(event, false, '../../')"
+          class="dac-header-search-input" placeholder="Search" />
+          <a class="dac-header-search-close hide" id="search-close">close</a>
+      </form>
+    </div><!-- end dac-header-search-inner -->
+  </div><!-- end dac-header-search -->
+
+  <div class="search_filtered_wrapper">
+    <div class="suggest-card reference no-display">
+      <ul class="search_filtered">
+      </ul>
+    </div>
+    <div class="suggest-card develop no-display">
+      <ul class="search_filtered">
+      </ul>
+      <div class="child-card guides no-display">
+      </div>
+      <div class="child-card training no-display">
+      </div>
+      <div class="child-card samples no-display">
+      </div>
+    </div>
+    <div class="suggest-card design no-display">
+      <ul class="search_filtered">
+      </ul>
+    </div>
+    <div class="suggest-card distribute no-display">
+      <ul class="search_filtered">
+      </ul>
+    </div>
+  </div>
+
+        
+
+        <a class="dac-header-console-btn" href="https://play.google.com/apps/publish/">
+          <span class="dac-sprite dac-google-play"></span>
+          <span class="dac-visible-desktop-inline">Developer</span>
+          Console
+        </a>
+
+      </div><!-- end header-wrap.wrap -->
+    </div><!-- end header -->
+
+    <div id="searchResults" class="wrap" style="display:none;">
+      <h2 id="searchTitle">Results</h2>
+      <div id="leftSearchControl" class="search-control">Loading...</div>
+    </div>
+  </div> <!--end header-wrapper -->
+
+  
+  <!-- Navigation-->
+  <nav class="dac-nav">
+    <div class="dac-nav-dimmer" data-dac-toggle-nav></div>
+
+    <ul class="dac-nav-list" data-dac-nav>
+      <li class="dac-nav-item dac-nav-head">
+        <a class="dac-nav-link dac-nav-logo" data-dac-toggle-nav href="javascript:;" title="Close navigation">
+          <img class="dac-logo-image" src="../../assets/images/android_logo.png"
+               srcset="../../assets/images/android_logo@2x.png 2x"
+               width="32" height="36" alt="Android" /> Developers
+        </a>
+      </li>
+      <li class="dac-nav-item home">
+        <a class="dac-nav-link dac-visible-mobile-block" href="../../index.html">Home</a>
+        <ul class="dac-nav-secondary about">
+          <li class="dac-nav-item about">
+            <a class="dac-nav-link" href="../../about/index.html">Android</a>
+          </li>
+          <li class="dac-nav-item wear">
+            <a class="dac-nav-link" href="../../wear/index.html">Wear</a>
+          </li>
+          <li class="dac-nav-item tv">
+            <a class="dac-nav-link" href="../../tv/index.html">TV</a>
+          </li>
+          <li class="dac-nav-item auto">
+            <a class="dac-nav-link" href="../../auto/index.html">Auto</a>
+          </li>
+        </ul>
+      </li>
+      <li class="dac-nav-item design">
+        <a class="dac-nav-link" href="../../design/index.html"
+           zh-tw-lang="設計"
+           zh-cn-lang="设计"
+           ru-lang="Проектирование"
+           ko-lang="디자인"
+           ja-lang="設計"
+           es-lang="Diseñar">Design</a>
+      </li>
+      <li class="dac-nav-item develop">
+        <a class="dac-nav-link" href="../../develop/index.html"
+           zh-tw-lang="開發"
+           zh-cn-lang="开发"
+           ru-lang="Разработка"
+           ko-lang="개발"
+           ja-lang="開発"
+           es-lang="Desarrollar">Develop</a>
+        <ul class="dac-nav-secondary develop">
+          <li class="dac-nav-item training">
+            <a class="dac-nav-link" href="../../training/index.html"
+               zh-tw-lang="訓練課程"
+               zh-cn-lang="培训"
+               ru-lang="Курсы"
+               ko-lang="교육"
+               ja-lang="トレーニング"
+               es-lang="Capacitación">Training</a>
+          </li>
+          <li class="dac-nav-item guide">
+            <a class="dac-nav-link" href="../../guide/index.html"
+               zh-tw-lang="API 指南"
+               zh-cn-lang="API 指南"
+               ru-lang="Руководства по API"
+               ko-lang="API 가이드"
+               ja-lang="API ガイド"
+               es-lang="Guías de la API">API Guides</a>
+          </li>
+          <li class="dac-nav-item reference">
+            <a class="dac-nav-link" href="../../reference/packages.html"
+               zh-tw-lang="參考資源"
+               zh-cn-lang="参考"
+               ru-lang="Справочник"
+               ko-lang="참조문서"
+               ja-lang="リファレンス"
+               es-lang="Referencia">Reference</a>
+          </li>
+          <li class="dac-nav-item tools">
+            <a class="dac-nav-link" href="../../sdk/index.html"
+               zh-tw-lang="相關工具"
+               zh-cn-lang="工具"
+               ru-lang="Инструменты"
+               ko-lang="도구"
+               ja-lang="ツール"
+               es-lang="Herramientas">Tools</a></li>
+          <li class="dac-nav-item google">
+            <a class="dac-nav-link" href="../../google/index.html">Google Services</a>
+          </li>
+          
+          <li class="dac-nav-item preview">
+            <a class="dac-nav-link" href="../../preview/index.html">Preview</a>
+          </li>
+        </ul>
+      </li>
+      <li class="dac-nav-item distribute">
+        <a class="dac-nav-link" href="../../distribute/googleplay/index.html"
+           zh-tw-lang="發佈"
+           zh-cn-lang="分发"
+           ru-lang="Распространение"
+           ko-lang="배포"
+           ja-lang="配布"
+           es-lang="Distribuir">Distribute</a>
+        <ul class="dac-nav-secondary distribute">
+          <li class="dac-nav-item googleplay">
+            <a class="dac-nav-link" href="../../distribute/googleplay/index.html">Google Play</a></li>
+          <li class="dac-nav-item essentials">
+            <a class="dac-nav-link" href="../../distribute/essentials/index.html">Essentials</a></li>
+          <li class="dac-nav-item users">
+            <a class="dac-nav-link" href="../../distribute/users/index.html">Get Users</a></li>
+          <li class="dac-nav-item engage">
+            <a class="dac-nav-link" href="../../distribute/engage/index.html">Engage &amp; Retain</a></li>
+          <li class="dac-nav-item monetize">
+            <a class="dac-nav-link" href="../../distribute/monetize/index.html">Earn</a>
+          </li>
+          <li class="dac-nav-item analyze">
+            <a class="dac-nav-link" href="../../distribute/analyze/index.html">Analyze</a>
+          </li>
+          <li class="dac-nav-item stories">
+            <a class="dac-nav-link" href="../../distribute/stories/index.html">Stories</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <!-- end navigation-->
+  
+
+
+
+
+  <div class="wrap clearfix" id="body-content"><div class="cols">
+    <div class="col-3 dac-toggle dac-mobile" id="side-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
+      
+  <div class="dac-visible-mobile-block" data-toggle="section">
+    <span class="dac-toggle-expand dac-devdoc-toggle"><i class="dac-sprite dac-expand-more-black"></i> Show navigation</span>
+    <span class="dac-toggle-collapse dac-devdoc-toggle" data-toggle-section><i class="dac-sprite dac-expand-less-black"></i> Hide navigation</span>
+  </div>
+
+      <div class="dac-toggle-content" id="devdoc-nav">
+        <div class="scroll-pane">
+<ul id="nav">
+
+  <li class="nav-section">
+    <div class="nav-section-header"><a href="../../sdk/index.html"><span class="en">Download</span></a></div>
+    <ul>
+      <li><a href="../../sdk/installing/index.html">
+          <span class="en">Installing the SDK</span></a></li>
+
+      <li><a href="../../sdk/installing/adding-packages.html">
+          <span class="en">Adding SDK Packages</span></a></li>
+    </ul>
+  </li>
+
+
+<!-- Android Studio menu-->
+
+ <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../../tools/studio/index.html"><span class="en">Android Studio</span></a>
+    </div>
+    <ul>
+      <li><a href="../../tools/studio/studio-config.html">
+          Configuration</a></li>
+      <li><a href="../../tools/studio/studio-features.html">
+          Features</a></li>
+      <li><a href="../../sdk/installing/studio-tips.html">
+          Tips and Tricks</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="../../sdk/installing/migrate.html">
+        <span class="en">
+          Migrating from Eclipse ADT</span></a></div>
+          <ul>
+            <li><a href="../../tools/studio/eclipse-transition-guide.html">
+            <span class="en">Transition Guide</span></a></li>
+          </ul>
+      </li>
+    </ul>
+
+ </li><!-- End of Android Studio menu -->
+
+
+<!-- Workflow menu-->
+
+  <li class="nav-section">
+    <div class="nav-section-header">
+        <a href="../../tools/workflow/index.html"><span class="en">Workflow</span></a>
+    </div>
+    <ul>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="../../tools/devices/index.html">
+        <span class="en">
+        Setting Up Virtual Devices</span></a></div>
+        <ul>
+          <li><a href="../../tools/devices/managing-avds.html"><span class="en">With AVD Manager</span></a></li>
+          <li><a href="../../tools/devices/managing-avds-cmdline.html"><span class="en">From the Command Line</span></a></li>
+          <li><a href="../../tools/devices/emulator.html"><span class="en">Using the Emulator</span></a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="../../tools/device.html"><span class="en">Using Hardware Devices</span></a></div>
+        <ul>
+          <li><a href="../../tools/extras/oem-usb.html"><span
+            class="en">USB Drivers</span></a></li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="../../tools/projects/index.html"><span class="en">Managing Projects</span></a></div>
+        <ul>
+          <li><a href="../../sdk/installing/create-project.html"><span class="en">From Android Studio</span></a></li>
+          <li><a href="../../tools/projects/projects-cmdline.html"><span class="en">From the Command Line</span></a></li>
+          <li><a href="../../tools/projects/templates.html"><span class="en">Using Code Templates</span></a></li>
+        </ul>
+      </li>
+
+
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../tools/building/index.html">
+          <span class="en">Building and Running</span></a>
+        </div>
+        <ul>
+          <li><a href="../../tools/building/building-studio.html">
+            <span class="en">From Android Studio</span></a></li>
+          <li><a href="../../tools/building/building-cmdline.html">
+            <span class="en">From the Command Line</span></a></li>
+        </ul>
+      </li>
+
+
+  <li class="nav-section">
+        <div class="nav-section-header"><a href="../../tools/testing/index.html">
+            <span class="en">Testing</span>
+          </a></div>
+        <ul>
+          <li>
+            <a href="../../tools/testing/testing_android.html">
+            <span class="en">Fundamentals</span></a>
+          </li>
+          <li><a href="../../tools/testing/testing_eclipse.html">
+            <span class="en">From Eclipse</span></a>
+          </li>
+          <li><a href="../../tools/testing/testing_otheride.html">
+            <span class="en">From Other IDEs</span></a>
+          </li>
+          <li>
+            <a href="../../tools/testing/activity_testing.html">
+            <span class="en">Activity Testing</span></a>
+          </li>
+          <li>
+            <a href="../../tools/testing/service_testing.html">
+            <span class="en">Service Testing</span></a>
+          </li>
+          <li>
+            <a href="../../tools/testing/contentprovider_testing.html">
+            <span class="en">Content Provider Testing</span></a>
+          </li>
+          <li>
+            <a href="../../tools/testing/testing_accessibility.html">
+            <span class="en">Accessibility Testing</span></a>
+          </li>
+           <li>
+            <a href="../../tools/testing/testing_ui.html">
+            <span class="en">UI Testing</span></a>
+          </li>
+          <li>
+            <a href="../../tools/testing/what_to_test.html">
+            <span class="en">What To Test</span></a>
+          </li>
+          <li>
+            <a href="../../tools/testing/activity_test.html">
+            <span class="en">Activity Testing Tutorial</span></a>
+          </li>
+        </ul>
+  </li><!-- end of testing -->
+
+  <li class="nav-section">
+    <div class="nav-section-header"><a href="../../tools/debugging/index.html"><span class="en">Debugging</span></a></div>
+    <ul>
+      <li><a href="../../tools/debugging/debugging-studio.html"><span class="en">From Android Studio</span></a></li>
+      <li><a href="../../tools/debugging/debugging-projects-cmdline.html"><span class="en">From Other IDEs</span></a></li>
+      <li><a href="../../tools/debugging/ddms.html"><span class="en">Using DDMS</span></a></li>
+      <li><a href="../../tools/debugging/debugging-log.html"><span class="en">Reading and Writing Logs</span></a></li>
+      <li><a href="../../tools/debugging/improving-w-lint.html"><span class="en">Improving Your Code with lint</span></a></li>
+      <li><a href="../../tools/debugging/debugging-ui.html"><span class="en">Optimizing your UI</span></a></li>
+      <li><a href="../../tools/debugging/debugging-tracing.html"><span class="en">Profiling with Traceview and dmtracedump</span></a></li>
+      <li><a href="../../tools/debugging/annotations.html"><span class="en">Improving Code Inspection with Annotations</span></a></li>
+      <li><a href="../../tools/debugging/systrace.html"><span class="en">Analyzing UI Performance</span></a></li>
+      <li><a href="../../tools/debugging/debugging-memory.html">Investigating Your RAM Usage</a></li>
+      <li><a href="../../tools/debugging/debugging-devtools.html"><span class="en">Using the Dev Tools App</span></a></li>
+    </ul>
+  </li>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="../../tools/publishing/publishing_overview.html" zh-cn-lang="发布概述"><span class="en">Publishing</span></a></div>
+        <ul>
+          <li><a href="../../tools/publishing/preparing.html" zh-cn-lang="准备发布"><span class="en">Preparing for Release</span></a></li>
+          <li><a href="../../tools/publishing/versioning.html"><span class="en">Versioning Your Apps</span></a></li>
+          <li><a href="../../tools/publishing/app-signing.html"><span class="en">Signing Your Apps</span></a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+
+
+  <li class="nav-section">
+    <div class="nav-section-header"><a href="../../tools/help/index.html"><span
+class="en">Tools Help</span></a></div>
+    <ul>
+      <li><a href="../../tools/help/adb.html">adb</a></li>
+      <li><a href="../../tools/help/android.html">android</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../tools/help/android-monitor.html">Android Monitor</a></div>
+        <ul>
+          <li><a href="../../tools/help/am-logcat.html"><span
+            class="en">logcat Monitor</span></a>
+          </li>
+          <li><a href="../../tools/help/am-memory.html"><span
+            class="en">Memory Monitor</span></a>
+          </li>
+          <li><a href="../../tools/help/am-cpu.html"><span
+            class="en">CPU Monitor</span></a>
+          </li>
+          <li><a href="../../tools/help/am-gpu.html"><span
+            class="en">GPU Monitor</span></a>
+          </li>
+          <li><a href="../../tools/help/am-network.html"><span
+            class="en">Network Monitor</span></a>
+          </li>
+        </ul>
+      </li>
+      <li><a href="../../tools/help/avd-manager.html">AVD Manager</a></li>
+      <li><a href="../../tools/help/bmgr.html">bmgr</a>
+      <li><a href="../../tools/help/monitor.html">Device Monitor</a></li>
+      <li><a href="../../tools/help/desktop-head-unit.html">Desktop Head Unit</a></li>
+      <li><a href="../../tools/help/dmtracedump.html">dmtracedump</a></li>
+      <li><a href="../../tools/help/draw9patch.html">Draw 9-Patch</a></li>
+      <li><a href="../../tools/help/emulator.html">Emulator</a></li>
+      <li><a href="../../tools/help/etc1tool.html">etc1tool</a></li>
+      <li><a href="../../tools/help/hierarchy-viewer.html">Hierarchy Viewer</a></li>
+      <li><a href="../../tools/help/hprof-conv.html">hprof-conv</a></li>
+      <li><a href="../../tools/help/jobb.html">jobb</a></li>
+      <li><a href="../../sdk/installing/studio-layout.html">Layout Editor</span></a></li>
+      <li><a href="../../tools/help/lint.html">lint</span></a></li>
+      <li><a href="../../tools/help/logcat.html">logcat</a></li>
+      <li><a href="../../tools/help/mksdcard.html">mksdcard</a></li>
+       <li><a href="../../tools/help/proguard.html" zh-cn-lang="ProGuard">ProGuard</a></li>
+       <li><a href="../../tools/help/project-mgmt.html">Project Structure Management</a></li>
+       <li><a href="../../tools/help/sdk-manager.html">SDK Manager</a></li>
+       <li><a href="../../tools/help/systrace.html">Systrace</a></li>
+       <li><a href="../../tools/help/theme-editor.html">Theme Editor</a></li>
+       <li><a href="../../tools/help/gltracer.html">Tracer for OpenGL ES</a></li>
+       <li>
+           <a href="../../tools/help/translations-editor.html">Translations Editor</a>
+       </li>
+       <li><a href="../../tools/help/traceview.html">Traceview</a></li>
+       <li><a href="../../tools/help/vector-asset-studio.html">Vector Asset Studio</a></li>
+       <li><a href="../../tools/help/image-asset-studio.html">Image Asset Studio</a></li>
+       <li><a href="../../tools/help/zipalign.html">zipalign</a></li>
+
+    </ul>
+  </li>
+
+  </li><!-- end of tools help -->
+
+
+<!-- Build System menu-->
+
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../../sdk/installing/studio-build.html">Build System</a>
+    </div>
+    <ul>
+      <li><a href="../../tools/building/configuring-gradle.html">
+        <span class="en">Configuring Gradle Builds</span></a></li>
+      <li><a href="../../tools/building/plugin-for-gradle.html">
+        <span class="en">Android Plugin for Gradle</span></a></li>
+      <li><a href="../../tools/building/manifest-merge.html">
+        <span class="en">Manifest Merging</span></a></li>
+      <li><a href="../../tools/building/multidex.html">
+        <span class="en">Apps Over 65K Methods</span></a></li>
+      </ul>
+  </li><!-- end of build system -->
+
+
+<!-- Performance Tools menu-->
+  <li class="nav-section">
+    <div class="nav-section-header">
+      <a href="../../tools/performance/index.html">Performance Tools</a>
+    </div>
+    <ul>
+      <li><a href="../../tools/performance/debug-gpu-overdraw/index.html">
+        Overdraw Debugger</a>
+      </li>
+      <li><a href="../../tools/performance/profile-gpu-rendering/index.html">
+        Rendering Profiler</a>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../tools/performance/hierarchy-viewer/index.html">
+          Hierarchy Viewer</a></div>
+        <ul>
+          <li><a href="../../tools/performance/hierarchy-viewer/setup.html"><span
+            class="en">Setup</span></a>
+          </li>
+          <li><a href="../../tools/performance/hierarchy-viewer/profiling.html"><span
+            class="en">Profiling</span></a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../tools/performance/comparison.html">
+          Memory Profilers</a></div>
+        <ul>
+          <li><a href="../../tools/performance/memory-monitor/index.html"><span
+            class="en">Memory Monitor</span></a>
+          </li>
+          <li><a href="../../tools/performance/heap-viewer/index.html"><span
+            class="en">Heap Viewer</span></a>
+          </li>
+          <li><a href="../../tools/performance/allocation-tracker/index.html"><span
+            class="en">Allocation Tracker</span></a>
+          </li>
+        </ul>
+      </li>
+      <li><a href="../../tools/performance/traceview/index.html">
+        Traceview</a>
+      </li>
+      <li><a href="../../tools/performance/systrace/index.html">
+        Systrace</a>
+      </li>
+      <li class="nav-section">
+        <div class="nav-section-header">
+          <a href="../../tools/performance/batterystats-battery-historian/index.html">
+          Battery Profilers</a></div>
+        <ul>
+          <li><a href="../../tools/performance/batterystats-battery-historian/charts.html"><span
+            class="en">Historian Charts</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li><!-- End Performance Tools menu-->
+
+
+  <!-- Testing Tools menu-->
+
+  <li class="nav-section">
+    <div class="nav-section-header"><a href="../../tools/testing/testing-tools.html"><span class="en">Testing Tools</span></a></div>
+    <ul>
+      <li class="nav-section">
+         <div class="nav-section-header"><a href="../../tools/testing-support-library/index.html"><span
+class="en">Testing Support Library</span></a></div>
+         <ul>
+            <li><a href="../../reference/android/support/test/package-summary.html">API Reference</a></li>
+         </ul>
+      </li>
+      <li><a href="../../tools/help/monkey.html">monkey</a></li>
+      <li class="nav-section">
+        <div class="nav-section-header"><a href="../../tools/help/monkeyrunner_concepts.html"><span class="en">monkeyrunner</span></a></div>
+        <ul>
+          <li><a href="../../tools/help/MonkeyDevice.html"><span
+class="en">MonkeyDevice</span></a></li>
+          <li><a href="../../tools/help/MonkeyImage.html"><span
+class="en">MonkeyImage</span></a></li>
+          <li><a href="../../tools/help/MonkeyRunner.html"><span
+class="en">MonkeyRunner</span></a></li>
+        </ul>
+      </li>
+    </ul>
+  </li><!-- end of testing support library -->
+
+
+<!-- Support Library menu-->
+
+  <li class="nav-section">
+    <div class="nav-section-header"><a href="../../tools/support-library/index.html"><span
+class="en">Support Library</span></a></div>
+    <ul>
+      <li><a href="../../tools/support-library/features.html">Features</a></li>
+      <li><a href="../../tools/support-library/setup.html">Setup</a></li>
+    </ul>
+  </li><!-- end of support library -->
+
+  <li class="nav-section">
+    <div class="nav-section-header empty"><a href="../../tools/data-binding/guide.html"><span
+class="en">Data Binding Library</span></a></div>
+  </li><!-- end of support library -->
+
+
+<!-- Revision menu-->
+
+  <li class="nav-section">
+    <div class="nav-section-header"><a href="../../tools/revisions/index.html"><span class="en">Revisions</span></a></div>
+    <ul>
+      <li><a href="../../tools/revisions/studio.html">
+        <span class="en">Android Studio</span>
+      </a></li>
+      <li><a href="../../tools/sdk/tools-notes.html">
+        <span class="en">SDK Tools</span>
+      </a></li>
+      <li><a href="../../tools/revisions/build-tools.html">
+        <span class="en">SDK Build Tools</span>
+      </a></li>
+      <li><a href="../../tools/revisions/gradle-plugin.html">
+        <span class="en">Android Plugin for Gradle</span>
+      </a></li>
+      <li><a href="../../tools/revisions/platforms.html">
+        <span class="en">SDK Platforms</span></a></li>
+      <li><a href="../../tools/sdk/eclipse-adt.html">
+        <span class="en">ADT Plugin</span></a></li>
+    </ul>
+  </li>
+
+  <li class="nav-section">
+    <div class="nav-section-header empty">
+      <a href="../../tools/sdk/ndk/index.html">NDK</a>
+    </div>
+  </li>
+
+<!--  <li class="nav-section">
+    <div class="nav-section-header">
+    <a href="../../tools/adk/index.html">
+      <span class="en">ADK</span></a>
+    </div>
+    <ul>
+      <li><a href="../../tools/adk/adk2.html">ADK 2012 Guide</a></li>
+      <li><a href="../../tools/adk/adk.html">ADK 2011 Guide</a></li>
+    </ul>
+  </li> -->
+
+<script type="text/javascript">
+<!--
+    buildToggleLists();
+    changeNavLang(getLangPref());
+//-->
+</script>
+
+        </div>
+      </div>
+    </div> <!-- end side-nav -->
+    <script>
+      $(document).ready(function() {
+        scrollIntoView("devdoc-nav");
+        });
+    </script>
+
+
+
+
+<div class="col-13" id="doc-col" >
+
+
+  
+
+  
+    
+      
+        <h1 itemprop="name" >Android Monitor</h1>
+      
+    
+  
+
+
+  
+  <div id="jd-content">
+
+
+    <div class="jd-descr" itemprop="articleBody">
+    <div id="qv-wrapper">
+<div id="qv">
+  <h2>In this document</h2>
+<ol>
+  <li><a href="#displaying">Displaying Android Monitor</a></li>
+  <li><a href="#profiling">Profiling a Running App in Android Monitor</a></li>
+  <li><a href="#switching">Switching between Devices and Apps</a></li>
+  <li><a href="#screencapture">Taking a Screen Capture of the Device</a></li>
+  <li><a href="#video">Recording a Video from the Screen</a></li>
+  <li><a href="#sysinfo">Examining System Information</a></li>
+  <li><a href="#terminating">Terminating the App</a></li>
+  <li><a href="#rearranging">Rearranging Android Monitor Windows</a></li>
+  <li><a href="#removing">Removing an App from a Device</a></li>
+</ol>
+
+ <h2>See also</h2>
+  <ol>
+    <li><a href="../../tools/help/am-logcat.html">logcat Monitor</a>
+      </li>
+
+      <li><a href="../../tools/help/am-memory.html">Memory Monitor</a>
+      </li>
+
+      <li><a href="../../tools/help/am-cpu.html">CPU Monitor</a>
+      </li>
+
+      <li><a href="../../tools/help/am-gpu.html">GPU Monitor</a>
+      </li>
+
+      <li>
+        <a href="../../tools/help/am-network.html">Network Monitor</a>
+      </li>
+  </ol>
+
+
+<h2>
+  Dependencies and Prerequisites
+</h2>
+
+<ul>
+  <li>In your app, set the <code>debuggable</code> property to <code>true</code> in the manifest or
+  <code>build.gradle</code> file (it’s initially set by default).
+  </li>
+
+    <li>Enable ADB integration through <strong>Tools</strong> &gt; <strong>Android</strong> &gt;
+  <strong>Enable ADB Integration</strong>.
+    </li>
+
+  <li>Make sure your development computer detects your hardware device, which often happens
+  automatically when you connect it to a USB port.
+  </li>
+ <li>
+    <a href="../../tools/device.html#device-developer-options">Enable</a> <strong><a href=
+    "../../tools/device.html#device-developer-options">USB debugging</a></strong> in
+    <strong>Developer Options</strong> on the device or emulator.
+  </li>
+
+  <li>
+    <a href="../../tools/help/monitor.html">Android Device Monitor</a> can’t be running.
+  </li>
+</ul>
+
+</div>
+</div>
+
+<p>
+  Android Monitor helps you to profile the performance of your apps so you can optimize, debug, and
+  improve them. It lets you monitor the following aspects of your apps from a hardware device or
+  the Android Studio emulator:
+</p>
+
+<ul>
+  <li>
+    <a href="../../reference/android/util/Log.html">Log</a> messages, either
+    system- or user-defined
+  </li>
+
+  <li>Memory, CPU, and GPU usage
+  </li>
+
+  <li>Network traffic (hardware device only)
+  </li>
+</ul>
+
+<p>
+  Android Monitor contains the logcat, Memory, CPU, GPU, and Network Monitors that you can use
+  separately to examine these aspects of your apps.
+</p>
+
+
+<h2 id="displaying">
+  Displaying Android Monitor
+</h2>
+
+<p>
+  Android Monitor is integrated into the Android Studio main window:
+</p>
+
+<ul>
+  <li>To display Android Monitor, click <img src="../../images/tools/am-icon.png"
+    style="vertical-align:sub;margin:0;height:17px" alt="Android Monitor icon" />, which by default
+  is at the bottom of the main window.
+  </li>
+
+  <li>To hide Android Monitor, click <img src="../../images/tools/am-icon.png"
+    style="vertical-align:sub;margin:0;height:17px" alt="Android Monitor icon" /> again.
+  </li>
+</ul>
+<img src="../../images/tools/am-androidmon.png" style="vertical-align:sub;margin:0;width:480px" />
+
+<h2 id="profiling">
+  Profiling a Running App in Android Monitor
+</h2>
+
+<p>
+  Follow these steps:
+</p>
+
+<ol>
+  <li>Optionally connect a hardware device.
+  </li>
+
+  <li>
+    <a href="#displaying">Display Android Monitor</a>.
+  </li>
+
+  <li>Open an app project and <a href=
+  "../../tools/building/building-studio.html#RunningApp">run the app</a> on a device or
+  emulator.
+  </li>
+
+  <li>Click the tab for the monitor you want to view and start the monitor, if needed:
+    <ul>
+      <li><a href="../../tools/help/am-logcat.html">logcat Monitor</a>
+      </li>
+
+      <li><a href="../../tools/help/am-memory.html">Memory Monitor</a>
+      </li>
+
+      <li><a href="../../tools/help/am-cpu.html">CPU Monitor</a>
+      </li>
+
+      <li><a href="../../tools/help/am-gpu.html">GPU Monitor</a>
+      </li>
+
+      <li>
+        <a href="../../tools/help/am-network.html">Network Monitor</a>
+      </li>
+    </ul>
+</ol>
+    <h2 id="switching">
+      Switching between Devices and Apps
+    </h2>
+
+    <p>
+      By default, Android Monitor displays data for your most recently run app. You can switch to
+      another device and app as needed. In addition to currently running apps, you can view
+      information about apps that are no longer running so you can continue to view any information
+      about them that you gathered previously.
+    </p>
+
+    <p>
+      At the top of the Android Monitor main window are two menus listing devices and processes. To
+      switch to another device, process, or both, follow these steps:
+    </p>
+
+    <ol>
+      <li>Select the device or emulator.
+      </li>
+
+    <p>
+      The Device menu lists the devices and emulators that are running or have run during your
+      current session. There are various status messages that can appear in the Device menu:
+    </p>
+
+    <ul>
+      <li>
+        <strong>DISCONNECTED</strong> - You closed an emulator or unplugged a device from the
+        computer.
+      </li>
+
+      <li>
+        <strong>UNAUTHORIZED</strong> - A device needs you to accept the incoming computer
+        connection. For example, if the connected device displays an <em>Allow USB Debugging</em>
+        dialog, click <strong>OK</strong> to allow the connection.
+      </li>
+
+      <li>
+        <strong>OFFLINE</strong> - Android Monitor can’t communicate with a device, even though it
+        has detected that device.
+      </li>
+    </ul>
+
+  <li>Select the process.
+  </li>
+</ol>
+
+<p>
+  The Process menu lists the processes that are running or have run during your current session. If
+  a process is no longer running, the menu displays a status of <strong>DEAD</strong>.
+</p>
+
+<h2 id="screencapture">
+  Taking a Screen Capture of the Device
+</h2>
+
+<p>
+  You can take a PNG screenshot of the display on a connected device or the emulator. You can use
+  the images for your marketing materials as well as for debugging, for example.
+</p>
+<p>
+  Follow these steps:
+</p>
+<ol>
+  <li>
+    <a href="../../training/basics/firstapp/running-app.html">Run your
+    app</a> from within Android Studio.
+  </li>
+
+  <li>
+    <a href="#switching">Select the device and the process</a> in the Android Monitor
+    menus, if needed.
+  </li>
+
+  <li>Interact with the display on the device or emulator to stage the image you want.
+  </li>
+
+  <li>Click Screen Capture <img src="../../images/tools/am-iscreencapture.png"
+    style="vertical-align:sub;margin:0;height:17px" alt="Screen Capture icon" /> in the
+    Android Monitor toolbar.
+  </li>
+  <p>The screenshot appears in a <em>Screenshot Editor</em> window.</p>
+
+  <li>Optionally change the image:
+    <ul>
+      <li>
+        <strong>Reload</strong> - Click to take a new screenshot.
+      </li>
+
+      <li>
+        <strong>Rotate</strong> - Click to rotate the image 90 degrees clockwise.
+      </li>
+
+      <li>
+        <strong>Frame Screenshot</strong> - Select this option and choose a device to add an image
+        of the device to the outside of the screenshot. Select <strong>Drop Shadow</strong>,
+        <strong>Screen Glare</strong>, or both to add these effects to your image.
+      </li>
+
+      <li>
+        <strong>Chessboard</strong> and <strong>Grid</strong> - Select an option to display these
+        behind your image.
+      </li>
+
+      <li>
+        <strong>Zoom In</strong>, <strong>Zoom Out</strong>, or <strong>Actual Size</strong> -
+        Click these options to get different perspectives of your image without changing the image
+        itself.
+      </li>
+    </ul>
+    </li>
+      <li>Click <strong>Save</strong> to save the image.
+      </li>
+</ol>
+
+<h2 id="video">
+  Recording a Video from the Screen
+</h2>
+
+<p>
+  Android Studio lets you record an MP4 video from your hardware device for a maximum of three
+  minutes. You can use the video for your marketing materials as well as for debugging, for
+  example.
+</p>
+<p>
+  Follow these steps:
+</p>
+<ol>
+  <li>
+    <a href="../../training/basics/firstapp/running-app.html">Run your
+    app</a> from within Android Studio.
+  </li>
+
+  <li>
+    <a href="#switching">Select the device and the process</a> in the Android Monitor
+    menus, if needed.
+  </li>
+
+  <li>Interact with the display on the device or emulator to stage the start of the video.
+  </li>
+
+  <li>Click Screen Record <img src="../../images/tools/am-ivideo.png" style="vertical-align:sub;margin:0;height:17px" alt="Screen Record icon" /> in the Android Monitor toolbar.
+  </li>
+  <p>The screenshot appears in a Screenshot Editor window.</p>
+
+  <li>In the <em>Screen Recorder Options</em> dialog, optionally change the recording options:
+  </li>
+<ul>
+  <li>
+    <strong>Bit Rate</strong> - Type a bit rate. The default is 4 Mbps.
+  </li>
+
+  <li>
+    <strong>Resolution</strong> - Type a width and height value in pixels. The value must be a
+    multiple of 16. The default is the resolution of the device.
+  </li>
+</ul>
+  <li>Click <strong>Start Recording</strong> to start the recording.
+  </li>
+
+  <li>Click <strong>Stop Recording</strong> to stop the recording.
+  </li>
+
+  <li>In the <em>Save As</em> dialog, save the MP4 file.
+  </li>
+
+  <li>In the <em>Screen Recorder</em> dialog, click one of the buttons to show the file location,
+  open the recording in a player, or to dismiss the dialog.
+  </li>
+</ol>
+
+<h2 id="sysinfo">
+  Examining System Information
+</h2>
+<p>
+  You can view <code>dumpsys</code> output from within Android Monitor. Follow these steps:
+</p>
+
+<ol>
+  <li>
+    <a href="../../training/basics/firstapp/running-app.html">Run your
+    app</a> from within Android Studio.
+  </li>
+
+  <li>
+    <a href="#switching">Select the device and the process</a> in the Android Monitor
+    menus, if needed.
+  </li>
+
+  <li>Click System Information <img src="../../images/tools/am-isysteminfo.png"
+    style="vertical-align:sub;margin:0;height:17px" alt="System Information icon" /> and then a
+    menu item in the Android Monitor
+  toolbar.
+  </li>
+
+<p>
+  The menu items display different types of <code><a href=
+  "https://source.android.com/devices/tech/debug/dumpsys.html">dumpsys</a></code> output:
+</p>
+
+<ul>
+  <li>
+    <strong>Activity Manager State</strong> - <code>dumpsys activity</code>
+  </li>
+
+  <li>
+    <strong>Package Information</strong> - <code>dumpsys package</code>
+  </li>
+
+  <li>
+    <strong>Memory Usage</strong> - <code><a href=
+    "../../tools/debugging/debugging-memory.html#ViewingAllocations">dumpsys
+    meminfo</a></code>
+  </li>
+
+  <li>
+    <strong>Memory Use Over Time</strong> - <code><a href=
+    "http://android-developers.blogspot.com/2014/01/process-stats-understanding-how-your.html">dumpsys
+    procstats</a></code>
+  </li>
+
+  <li>
+    <strong>Graphics State</strong> - <code><a href=
+    "../../training/testing/performance.html">dumpsys gfxinfo</a></code>
+  </li>
+</ul>
+
+<p>
+  The information appears in an editable text file in the Code Editor.
+</p>
+</ol>
+
+<h2 id="terminating">
+  Terminating the App
+</h2>
+
+<p>
+  If you want to stop an app you’ve run from Android Studio, follow these steps:
+</p>
+
+<ol>
+  <li>
+    <a href="#switching">Select the device and the process</a> in the Android Monitor
+    menus, if needed.
+  </li>
+
+  <li>Click Terminate Application <img src="../../images/tools/am-iterminate.png"
+    style="vertical-align:sub;margin:0;height:17px" alt="Terminate App icon" />.
+  </li>
+
+
+<p>
+  The process status changes to <strong>DEAD</strong> in the Processes menu. The emulator or device
+  continues to run, but the app closes. Any running monitors in Android Monitor stop.
+</p>
+</ol>
+
+<h2 id="rearranging">
+  Rearranging Android Monitor Windows
+</h2>
+
+<p>
+  You can rearrange the Android Monitor windows for optimal viewing during your tests:
+</p>
+
+<ul>
+  <li>To reorder the monitors, move the tabs back and forth.
+  </li>
+
+  <li>To move a monitor to a standalone window, grab a tab and move it to a different location on
+  the screen. Or, select <img src="../../images/tools/am-igear.png" style="vertical-align:sub;margin:0;height:17px" alt="Gear menu icon" /> &gt; <strong>Floating Mode</strong>.
+  </li>
+
+
+  <li>To dock a standalone window, grab it and move it to the Android Monitor area. Or, select
+  <img src="../../images/tools/am-igear.png" style="vertical-align:sub;margin:0;height:17px"
+  alt="Gear menu icon"> &gt; <strong>Floating Mode</strong> to deselect it.
+  </li>
+
+
+  <li>To combine two monitor displays together, grab a tab and move it onto another monitor.
+  </li>
+
+  <li>To hide a monitor, click the <img src="../../images/tools/am-ihide.png" style="vertical-align:sub;margin:0;height:17px" alt="Hide icon" /> icon. To make it reappear, click the icon of
+  the monitor on the far right of the row of tabs.
+  </li>
+</ul>
+
+<h2 id="removing">
+  Removing an App from a Device
+</h2>
+
+<p>
+  To remove an app from a device you use for development, use the normal uninstall procedure on the
+  device.
+</p>
+
+<p>
+  If you run a new version of an app from Android Studio that’s been already installed on a
+  hardware device, the device displays an <em>Application Installation Failed</em> dialog. Click
+  <strong>OK</strong> to install the new version of the app.
+</p>
+
+
+
+
+
+    </div>
+
+    
+
+  </div> <!-- end jd-content -->
+
+<div class="wrap">
+  <div class="dac-footer">
+    <div class="cols dac-footer-main">
+      <div class="col-1of2">
+        <a class="dac-footer-getnews" data-modal-toggle="newsletter" href="javascript:;">Get news &amp; tips <span
+          class="dac-fab dac-primary"><i class="dac-sprite dac-mail"></i></span></a>
+      </div>
+      <div class="col-1of2 dac-footer-reachout">
+        <div class="dac-footer-contact">
+          <a class="dac-footer-contact-link" href="http://android-developers.blogspot.com/">Blog</a>
+          <a class="dac-footer-contact-link" href="/support.html">Support</a>
+        </div>
+        <div class="dac-footer-social">
+          <a class="dac-fab dac-footer-social-link" href="https://www.youtube.com/user/androiddevelopers"><i class="dac-sprite dac-youtube"></i></a>
+          <a class="dac-fab dac-footer-social-link" href="https://plus.google.com/+AndroidDevelopers"><i class="dac-sprite dac-gplus"></i></a>
+          <a class="dac-fab dac-footer-social-link" href="https://twitter.com/AndroidDev"><i class="dac-sprite dac-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="dac-footer-separator"/>
+
+    
+      <p class="dac-footer-copyright">
+        
+  Except as noted, this content is
+  licensed under <a href="http://creativecommons.org/licenses/by/2.5/">
+  Creative Commons Attribution 2.5</a>. For details and
+  restrictions, see the <a href="../../license.html">Content
+  License</a>.
+      </p>
+    
+
+    <p class="dac-footer-links">
+      <a href="/about/index.html">About Android</a>
+      <a href="/auto/index.html">Auto</a>
+      <a href="/tv/index.html">TV</a>
+      <a href="/wear/index.html">Wear</a>
+      <a href="/legal.html">Legal</a>
+
+      <span id="language" class="locales">
+        <select name="language" onchange="changeLangPref(this.value, true)">
+          <option value="en" selected="selected">English</option>
+          <option value="es">Español</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+          <option value="pt-br">Português Brasileiro</option>
+          <option value="ru">Русский</option>
+          <option value="zh-cn">中文（简体)</option>
+          <option value="zh-tw">中文（繁體)</option>
+        </select>
+      </span>
+    </p>
+  </div>
+</div> <!-- end footer -->
+
+<div data-modal="newsletter" data-newsletter data-swap class="dac-modal newsletter">
+  <div class="dac-modal-container">
+    <div class="dac-modal-window">
+      <header class="dac-modal-header">
+        <button class="dac-modal-header-close" data-modal-toggle><i class="dac-sprite dac-close"></i></button>
+        <div class="dac-swap" data-swap-container>
+          <section class="dac-swap-section dac-active dac-down">
+            <h2 class="norule dac-modal-header-title">Get the latest Android developer news and tips that will help you find success on Google Play.</h2>
+            <p class="dac-modal-header-subtitle">&#42; Required Fields</p>
+          </section>
+          <section class="dac-swap-section dac-up">
+            <h2 class="norule dac-modal-header-title">Hooray!</h2>
+          </section>
+        </div>
+      </header>
+      <div class="dac-swap" data-swap-container>
+        <section class="dac-swap-section dac-active dac-left">
+          <form action="https://docs.google.com/forms/d/1QgnkzbEJIDu9lMEea0mxqWrXUJu0oBCLD7ar23V0Yys/formResponse" class="dac-form" method="post" target="dac-newsletter-iframe">
+            <section class="dac-modal-content">
+              <fieldset class="dac-form-fieldset">
+                <div class="cols">
+                  <div class="col-1of2 newsletter-leftCol">
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-full-name" class="dac-form-floatlabel">Full name</label>
+                      <input type="text" class="dac-form-input" name="entry.1357890476" id="newsletter-full-name" required>
+                      <span class="dac-form-required">*</span>
+                    </div>
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-email" class="dac-form-floatlabel">Email address</label>
+                      <input type="email" class="dac-form-input" name="entry.472100832" id="newsletter-email" required>
+                      <span class="dac-form-required">*</span>
+                    </div>
+                  </div>
+                  <div class="col-1of2 newsletter-rightCol">
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-company" class="dac-form-floatlabel">Company / developer name</label>
+                      <input type="text" class="dac-form-input" name="entry.1664780309" id="newsletter-company">
+                    </div>
+                    <div class="dac-form-input-group">
+                      <label for="newsletter-play-store" class="dac-form-floatlabel">One of your Play Store app URLs</label>
+                      <input type="url" class="dac-form-input" name="entry.47013838" id="newsletter-play-store" required>
+                      <span class="dac-form-required">*</span>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset class="dac-form-fieldset">
+                <div class="cols">
+                  <div class="col-1of2 newsletter-leftCol">
+                    <legend class="dac-form-legend">Which best describes your business:<span class="dac-form-required">*</span>
+                    </legend>
+                    <div class="dac-form-radio-group">
+                      <input type="radio" value="Apps" class="dac-form-radio" name="entry.1796324055" id="newsletter-business-type-app" required>
+                      <label for="newsletter-business-type-app" class="dac-form-radio-button"></label>
+                      <label for="newsletter-business-type-app" class="dac-form-label">Apps</label>
+                    </div>
+                    <div class="dac-form-radio-group">
+                      <input type="radio" value="Games" class="dac-form-radio" name="entry.1796324055" id="newsletter-business-type-games" required>
+                      <label for="newsletter-business-type-games" class="dac-form-radio-button"></label>
+                      <label for="newsletter-business-type-games" class="dac-form-label">Games</label>
+                    </div>
+                    <div class="dac-form-radio-group">
+                      <input type="radio" value="Apps and Games" class="dac-form-radio" name="entry.1796324055" id="newsletter-business-type-appsgames" required>
+                      <label for="newsletter-business-type-appsgames" class="dac-form-radio-button"></label>
+                      <label for="newsletter-business-type-appsgames" class="dac-form-label">Apps &amp; Games</label>
+                    </div>
+                  </div>
+                  <div class="col-1of2 newsletter-rightCol newsletter-checkboxes">
+                    <div class="dac-form-radio-group">
+                      <div class="dac-media">
+                        <div class="dac-media-figure">
+                          <input type="checkbox" class="dac-form-checkbox" name="entry.732309842" id="newsletter-add" required value="Add me to the mailing list for the monthly newsletter and occasional emails about development and Google Play opportunities.">
+                          <label for="newsletter-add" class="dac-form-checkbox-button"></label>
+                        </div>
+                        <div class="dac-media-body">
+                          <label for="newsletter-add" class="dac-form-label dac-form-aside">Add me to the mailing list for the monthly newsletter and occasional emails about development and Google Play opportunities.<span class="dac-form-required">*</span></label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="dac-form-radio-group">
+                      <div class="dac-media">
+                        <div class="dac-media-figure">
+                          <input type="checkbox" class="dac-form-checkbox" name="entry.2045036090" id="newsletter-terms" required value="I acknowledge that the information provided in this form will be subject to Google's privacy policy (https://www.google.com/policies/privacy/).">
+                          <label for="newsletter-terms" class="dac-form-checkbox-button"></label>
+                        </div>
+                        <div class="dac-media-body">
+                          <label for="newsletter-terms" class="dac-form-label dac-form-aside">I acknowledge that the information provided in this form will be subject to <a href="https://www.google.com/policies/privacy/">Google's privacy policy</a>.<span class="dac-form-required">*</span></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </section>
+            <footer class="dac-modal-footer">
+              <div class="cols">
+                <div class="col-2of5">
+                </div>
+              </div>
+              <button type="submit" value="Submit" class="dac-fab dac-primary dac-large dac-modal-action"><i class="dac-sprite dac-arrow-right"></i></button>
+            </footer>
+          </form>
+        </section>
+        <section class="dac-swap-section dac-right">
+          <div class="dac-modal-content">
+            <p class="newsletter-success-message">
+              You have successfully signed up for the latest Android developer news and tips.
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div> <!-- end footer -->
+
+</div><!-- end doc-content -->
+
+</div> <!-- end .cols --> 
+</div> <!-- end body-content --> 
+
+
+
+
+
+  <script src="https://developer.android.com/ytblogger_lists_unified.js" type="text/javascript"></script>
+  <script src="../../jd_lists_unified.js?v=15" type="text/javascript"></script>
+  <script src="../../jd_extras.js?v=15" type="text/javascript"></script>
+  <script src="../../jd_collections.js?v=15" type="text/javascript"></script>
+  <script src="../../jd_tag_helpers.js?v=15" type="text/javascript"></script>
+
+</body>
+</html>
